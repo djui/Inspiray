@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Inspiray</string>
+    <string name="today_s_inspiration">Today\'s Inspiration</string>
+    <string name="colorAButtonText">A</string>
+    <string name="colorBButtonText">B</string>
+    <string name="todo">TODO</string>
+</resources>
