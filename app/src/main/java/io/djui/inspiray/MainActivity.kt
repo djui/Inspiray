@@ -205,9 +205,11 @@ class MainActivity : AppCompatActivity() {
         this.title = title
 
         colorAButton.setBackgroundColor(colorA)
+        colorAButton.setTextColor(if(isDark(colorA)) Color.WHITE else Color.BLACK)
         colorAButton.text = colorAHex
 
         colorBButton.setBackgroundColor(colorB)
+        colorBButton.setTextColor(if(isDark(colorB)) Color.WHITE else Color.BLACK)
         colorBButton.text = colorBHex
     }
 
