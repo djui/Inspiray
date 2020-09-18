@@ -195,13 +195,20 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateContent(title: String, random: Random) {
-        this.title = title
-
         val colorA = randomColor(random)
         val colorB = randomColor(random)
-        colorAButton.setBackgroundColor(colorA)
-        colorBButton.setBackgroundColor(colorB)
+        val colorAHex = "#" + Integer.toHexString(colorA).substring(2) // skip alpha
+        val colorBHex = "#" + Integer.toHexString(colorB).substring(2) // skip alpha
+
         doodleImage.setImageResource(images[random.nextInt(images.size)])
+
+        this.title = title
+
+        colorAButton.setBackgroundColor(colorA)
+        colorAButton.text = colorAHex
+
+        colorBButton.setBackgroundColor(colorB)
+        colorBButton.text = colorBHex
     }
 
     private fun randomColor(random: Random): Int {
@@ -211,5 +218,9 @@ class MainActivity : AppCompatActivity() {
             random.nextInt(256),
             random.nextInt(256)
         )
+    }
+
+    private fun isDark(c: Int): Boolean {
+        return Color.luminance(c) < 0.5
     }
 }
