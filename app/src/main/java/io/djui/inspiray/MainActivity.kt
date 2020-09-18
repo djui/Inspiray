@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
+import kotlin.math.abs
 import kotlin.random.Random
-import kotlin.random.nextUInt
 
 
 class MainActivity : AppCompatActivity() {
@@ -164,15 +164,15 @@ class MainActivity : AppCompatActivity() {
         R.drawable.doodle_150,
     )
     private val dayOfYear = Calendar.DAY_OF_YEAR
-    private val seed = Calendar.getInstance().get(dayOfYear).toUInt()
+    private val seed = Calendar.getInstance().get(dayOfYear)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         findViewById<FloatingActionButton>(R.id.refreshFab).setOnClickListener {
-            val s = Random.nextUInt()
-            val r = Random(s.toInt())
+            val s = abs(Random.nextInt()) // for better readability skip negative numbers
+            val r = Random(s)
             updateContent("#$s", r)
         }
         findViewById<FloatingActionButton>(R.id.resetFab).setOnClickListener {
@@ -183,7 +183,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initialContent() {
-        updateContent("Today (#$seed)", Random(seed.toInt()))
+        updateContent("Today (#$seed)", Random(seed))
     }
 
     override fun onResume() {
